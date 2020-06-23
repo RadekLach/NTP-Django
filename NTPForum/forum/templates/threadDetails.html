@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if thread %}
+        {{thread.title}}
+    {% else %}
+        Not found
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if thread %}
+
+        <div class="row no-gutters  overflow-hidden flex-md-row mb-4 shadow-sm position-relative custom_bg_secondary">
+            <div class="col p-4 d-flex flex-column position-static ">
+                <h3 class="mb-0"> {{thread.title}} </h3>
+                <p> {{thread.text | linebreaks}} </p>
+                    {% if thread.author %}
+                        <p class="mb-1 text-muted text-right"> {{thread.author}} </p>
+                    {% else %}
+                        <p class="mb-1 text-muted text-right"> Account deleted </p>
+                    {% endif %}
+                <p class="mb-1 text-muted text-right"> {{thread.date}} </p>
+            </div>
+        </div>
+        {% for post in thread.post_set.all %}
+            <div class="row no-gutters  overflow-hidden flex-md-row mb-4 shadow-sm position-relative custom_bg_secondary">
+                <div class="col p-4 d-flex flex-column position-static ">
+                    <p> {{post.text | linebreaks}} </p>
+                    {% if post.author %}
+                        <p class="mb-1 text-muted text-right"> {{post.author}} </p>
+                    {% else %}
+                        <p class="mb-1 text-muted text-right"> Account deleted </p>
+                    {% endif %}
+                    <p class="mb-1 text-muted text-right"> {{post.date}} </p>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% include 'postAdd.html' %}
+
+    {% else %}
+        <div>
+            <center><h3>Thread not found!</h3></center>
+        </div>
+    {% endif %}
+{% endblock %}

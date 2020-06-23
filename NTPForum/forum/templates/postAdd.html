@@ -1,0 +1,13 @@
+<div class="row no-gutters border rounded overflow-hidden shadow-sm custom_bg_secondary">
+    <div class="col p-4 d-flex flex-column">
+        <h2 class="mb-0 text-center">Add an answer</h2>
+        <form method="post" action="#">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="answerContent" class="col-sm-2 col-form-label">Answer</label>
+                <textarea class="form-control" rows="5" cols="40" name="text" id="answerContent" maxlength="1024" required></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit" value="submit" name="submit">Submit</button>
+        </form>
+    </div>
+</div>

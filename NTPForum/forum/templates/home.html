@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+    <div> 
+        {% for thread in threads %}
+            <div class="row no-gutters  overflow-hidden flex-md-row mb-4 shadow-sm position-relative custom_bg_secondary">
+                <div class="col p-4 d-flex flex-column position-static ">
+                    <h3 class="mb-0">{{thread.title}} </h3>
+                    <p> {{thread.text | linebreaks}} </p>
+                    {% if thread.author %}
+                        <p class="mb-1 text-muted text-right"> {{thread.author}} </p>
+                    {% else %}
+                        <p class="mb-1 text-muted text-right"> Account deleted </p>
+                    {% endif %}
+                    <p class="mb-1 text-muted text-right"> {{thread.date}} </p>
+                    <a href="./thread/{{thread.id}}" class="stretched-link">Continue reading</a>
+                </div>
+            </div>
+        {% endfor %} 
+    </div>
+{% endblock %}
